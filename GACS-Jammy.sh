@@ -62,10 +62,10 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Check Ubuntu version
-if [ "$(lsb_release -cs)" != "jammy" ]; then
-    echo -e "${RED}This script only supports Ubuntu 22.04 (Jammy)${NC}"
-    exit 1
-fi
+#if [ "$(lsb_release -cs)" != "jammy" ]; then
+#    echo -e "${RED}This script only supports Ubuntu 22.04 (Jammy)${NC}"
+#    exit 1
+#fi
 
 # Print banner
 print_banner
@@ -84,7 +84,8 @@ run_command "apt install -y nodejs" "Installing NodeJS ($(( ++current_step ))/$t
 
 run_command "apt install -y npm" "Installing NPM ($(( ++current_step ))/$total_steps)"
 
-run_command "wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb && dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb" "Installing libssl ($(( ++current_step ))/$total_steps)"
+#run_command "wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb && dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb" "Installing libssl ($(( ++current_step ))/$total_steps)"
+run_command "wget http://ports.ubuntu.com/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.23_arm64.deb && dpkg -i libssl1.1_1.1.1f-1ubuntu2.23_arm64.deb" "Installing libssl ($(( ++current_step ))/$total_steps)"
 
 run_command "curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -" "Adding MongoDB key ($(( ++current_step ))/$total_steps)"
 
